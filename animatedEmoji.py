@@ -3,46 +3,45 @@ from sense_hat import SenseHat
 import time
 
 sense=SenseHat()
+class EmojiFace:
 
-yellow = (255,255,0)
-blue = (0,0,255)
-off = (0,0,0)
+    #initialize attributes
+    def init(self,emoji):
+        self.emoji = emoji
 
-def happyFace():
-    y=yellow
-    o=off
-    emoji=[
-        o,o,o,o,o,o,o,o,
-        o,y,y,o,o,y,y,o,
-        o,y,y,o,o,y,y,o,
-        o,o,o,o,o,o,o,o,
-        o,y,o,o,o,o,y,o,
-        o,y,o,o,o,o,y,o,
-        o,o,y,y,y,y,o,o,
-        o,o,o,o,o,o,o,o,
-    ]
-    return emoji
+    def change(self,emoji):
+        y = (255,255,0)
+        b = (0,0,255)
+        o = (0,0,0)
+        if emoji == "happyface":
+            Img=[
+                o,o,o,o,o,o,o,o,
+                o,y,y,o,o,y,y,o,
+                o,y,y,o,o,y,y,o,
+                o,o,o,o,o,o,o,o,
+                o,y,o,o,o,o,y,o,
+                o,y,o,o,o,o,y,o,
+                o,o,y,y,y,y,o,o,
+                o,o,o,o,o,o,o,o,
+                ]
+            return Img
+        elif emoji == "sadface":
+            Img=[
+                o,o,o,o,o,o,o,o,
+                o,b,b,o,o,b,b,o,
+                o,b,b,o,o,b,b,o,
+                o,o,o,o,o,o,o,o,
+                o,o,b,b,b,b,o,o,
+                o,b,o,o,o,o,b,o,
+                o,b,o,o,o,o,b,o,
+                o,o,o,o,o,o,o,o,
+                ]
+            return Img
 
-def sadFace():
-    b=blue
-    o=off
-    emoji=[
-        o,o,o,o,o,o,o,o,
-        o,b,b,o,o,b,b,o,
-        o,b,b,o,o,b,b,o,
-        o,o,o,o,o,o,o,o,
-        o,o,b,b,b,b,o,o,
-        o,b,o,o,o,o,b,o,
-        o,b,o,o,o,o,b,o,
-        o,o,o,o,o,o,o,o,
-    ]
-    return emoji
-
-emojis=[happyFace, sadFace]
-count=0
+e1 = EmojiFace()
+e1.change("sadface")
+print(e1.change("sadface"))
+count = 0
 while True:
-    sense.set_pixels(emojis[count % len(emojis)]())
-    time.sleep(3)
-    count+=1 
-
-    print(count % len(emojis))
+    sense.set_pixels(e1[count % 64]())
+    count +=1
