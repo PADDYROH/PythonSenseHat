@@ -12,6 +12,7 @@ class EmojiFace:
     def change(self,emoji):
         y = (255,255,0)
         b = (0,0,255)
+        r = (255,0,0)
         o = (0,0,0)
         if emoji == "happyface":
             Img=[
@@ -37,11 +38,20 @@ class EmojiFace:
                 o,o,o,o,o,o,o,o,
                 ]
             return Img
+        elif emoji == "mehface":
+            Img=[
+                o,o,o,o,o,o,o,o,
+                o,r,r,o,o,r,r,o,
+                o,r,r,o,o,r,r,o,
+                o,o,o,o,o,o,o,o,
+                o,o,o,o,o,o,o,o,
+                o,r,r,r,r,r,r,o,
+                o,o,o,o,o,o,o,o,
+                o,o,o,o,o,o,o,o,
+                ]
+            return Img
 
 e1 = EmojiFace()
-e1.change("sadface")
-print(e1.change("sadface"))
-count = 0
-while True:
-    sense.set_pixels(e1[count % 64]())
-    count +=1
+sense.set_pixels(e1.change("sadface"))
+#sense.set_pixels(e1.change("happyface"))
+#sense.set_pixels(e1.change("mehface"))
