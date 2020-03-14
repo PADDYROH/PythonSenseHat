@@ -11,20 +11,27 @@ class MonitorAndDisplay:
         with open('config.json') as file:
             self.config_data = json.load(file)
 
-    def read_temp(self):
-        temp = int(round(self.sense_hat.get_temperature()))
-        while True:
-            if temp < self.config_data["cold_max"]:
-                self.sense_hat.show_message(str(temp), text_colour = self.blue)
-            elif temp in range(self.config_data["comfortable_min"], self.config_data["comfortable_max"]):
-                self.sense_hat.show_message(str(temp), text_colour = self.green)
-            else:
-                self.sense_hat.show_message(str(temp),text_colour = self.red)
+    def display_temp(self,temp):
+        if temp < self.config_data["cold_max"]:
+            self.sense_hat.show_message(str(temp), text_colour = MonitorAndDisplay.blue)
+        elif temp in range(self.config_data["comfortable_min"], self.config_data["comfortable_max"]):
+            self.sense_hat.show_message(str(temp), text_colour = MonitorAndDisplay.green)
+        else:
+            self.sense_hat.show_message(str(temp), text_colour = MonitorAndDisplay.red)
 
-    def check_temp(self):
+    def get_temp(self):
+        return int(round(self.sense_hat.get_temperature()))
+
+    def current_temp(self,interval_to_check):
+        old_time = time.time()
+        temp = self.get_temp()
+
         while True:
-            self.read_temp()
-            time.sleep(10)
+            if time.time() - old_time > interval_to_check:
+                old_time = time.time()
+                temp = self.get_temp()
+            self.display_temp(temp)
+
 
     blue = (0, 0, 255)
     green = (0, 255, 0)
@@ -32,8 +39,8 @@ class MonitorAndDisplay:
 
 
 
-monitor = MonitorAndDisplay()
-monitor.check_temp()
+MonitorAndDisplay().current_temp(10)
+
 
 
 
@@ -41,5 +48,4 @@ monitor.check_temp()
 
 
 
-    
     
