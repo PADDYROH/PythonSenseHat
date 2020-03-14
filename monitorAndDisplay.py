@@ -5,14 +5,14 @@ import time
 
 class MonitorAndDisplay:
 
-    def __init__(self, sense_hat):
-        self.sense_hat = sense_hat
+    def __init__(self):
+        self.sense_hat = SenseHat()
 
         with open('config.json') as file:
             self.config_data = json.load(file)
 
     def read_temp(self):
-        temp = int(round(self.sense_hat.get_temperature())) 
+        temp = int(round(self.sense_hat.get_temperature()))
         while True:
             if temp < self.config_data["cold_max"]:
                 self.sense_hat.show_message(str(temp), text_colour = self.blue)
@@ -26,24 +26,15 @@ class MonitorAndDisplay:
             self.read_temp()
             time.sleep(10)
 
-
-
     blue = (0, 0, 255)
     green = (0, 255, 0)
     red = (255, 0, 0)
 
 
 
+monitor = MonitorAndDisplay()
+monitor.check_temp()
 
-
-
-sense = SenseHat()
-
-sense.clear()
-
-mon = MonitorAndDisplay(sense)
-
-mon.check_temp()
 
 
  
