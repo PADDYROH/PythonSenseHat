@@ -21,8 +21,9 @@ class die:
         print("x=%s, y=%s, z=%s" %(x,y,z))
         return x,y,z
     
-    def shake(self,x,y,z):
-        if x!=0 or y!=0 or z!=1:
+    def shake(self):
+        x,y,z = self.accel()
+        if x >1 or y>1 or z>1:
                 num = random.randint(1,6)
                 self.sense.show_message(str(num))
                 return num
@@ -31,5 +32,4 @@ class die:
 d1 = die(sense)
 
 while True:
-    x,y,z = d1.accel()
-    d1.shake(x,y,z)
+    d1.shake()
