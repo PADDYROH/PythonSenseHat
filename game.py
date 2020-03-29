@@ -1,5 +1,6 @@
 from Player import *
 import ElectronicDie
+import time
 
 class Game:
 
@@ -13,18 +14,27 @@ class Game:
 		self.__players = []
 
 	def __add_players(self):
-		for x in range(0, Game.NUM_PLAYERS):
-			self.__players.append(Player(x))	
+		x = 1
+		while x <= Game.NUM_PLAYERS:
+			self.__players.append(Player(x))
+			x += 1	
 
 	def check_for_winner(self):
+		winning_player = None
 		winner = False
 		for player in self.__players:
 			if player.get_score() >= Game.WINING_SCORE:
 				winner = True
+				winning_player = player
 		if winner:
+			print(str(winning_player.get_name()) + " has won the game !!!")
 			self.__game_running = False
 
 	def play_game(self):	
+
+		print(" Welcome to the die game first to 30 wins ")
+
+		time.sleep(2)
 
 		game_dice = ElectronicDie.die()
 
@@ -35,16 +45,18 @@ class Game:
 
 		while self.__game_running:
 			for player in self.__players:
-				print("Player : " + str(player.get_name()) + " turn")
-				print("shake die")
+				print("Player " + str(player.get_name()) + " : " + " it's your turn to shake the die")
 				while dice_value is None:
 					dice_value = game_dice.shake()
 
 				player.add_to_score(dice_value)
 
-				print("players score" + str(player.get_score()))
+				print("player "+ str(player.get_name()) +" score is now " + str(player.get_score()))
 
 				self.check_for_winner()
+
+				time.sleep(2)
+
 				
 				dice_value = None
 
