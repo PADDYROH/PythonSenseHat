@@ -2,11 +2,12 @@
 from sense_hat import SenseHat
 import time
 import random
+from datetime import datetime
+sense = SenseHat()
 
 class die:
-    def __init__(self,sense,total):
-        self.sense = SenseHat()
-        self.total = total
+    def __init__(self,sense):
+        self.sense = sense
     
     def accel(self):
         acceleration = self.sense.get_accelerometer_raw()
@@ -24,25 +25,15 @@ class die:
     def shake(self):
         x,y,z = self.accel()
         if x >1 or y>1 or z>1:
-            num = random.randint(1,6)
-            self.sense.show_message(str(num))
-            return print(num)
+                num1 = random.uniform(3,6)
+                num2 = random.uniform(1,3)
+                num = random.randint(int(num2),int(num1))
+                self.sense.show_message(str(num))
+                time.sleep(2)
+                return num
 
-    def check(self):
-        if x >1 or y>1 or z>1:
-            return True
-        else:
-            return False
 
-    def score(self):
-        total = self.shake()
-        return total 
-
-total = 0
 d1 = die(sense)
-while d1.check() = False:
+
+while True:
     d1.shake()
-    
-d1.total()
-
-
