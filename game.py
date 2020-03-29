@@ -4,7 +4,7 @@ import ElectronicDie
 class Game:
 
 	NUM_PLAYERS = 2
-	WINING_SCORE = 30
+	WINING_SCORE = 10
 
 
 
@@ -22,11 +22,11 @@ class Game:
 			if player.get_score() >= Game.WINING_SCORE:
 				winner = True
 		if winner:
-			self.__game_running = False:
+			self.__game_running = False
 
 	def play_game(self):	
 
-		game_dice = die()
+		game_dice = ElectronicDie.die()
 
 		self.__add_players()
 
@@ -35,10 +35,14 @@ class Game:
 
 		while self.__game_running:
 			for player in self.__players:
+				print("Player : " + str(player.get_name()) + " turn")
+				print("shake die")
 				while dice_value is None:
-					dice_value = die().shake()
+					dice_value = game_dice.shake()
 
 				player.add_to_score(dice_value)
+
+				print("players score" + str(player.get_score()))
 
 				self.check_for_winner()
 				
