@@ -10,6 +10,7 @@ class die:
         self.sense_hat = SenseHat()
         while True:
             self.shake()
+            self.__score = None 
 
 
     
@@ -30,10 +31,13 @@ class die:
         if x >1 or y>1 or z>1:
                 num1 = random.uniform(3,6)
                 num2 = random.uniform(1,3)
-                num = random.randint(int(num2),int(num1))
-                self.sense_hat.show_message(str(num))
-                print(num)
-                return num
+                self.__scorescore = random.randint(int(num2),int(num1))
+                self.sense_hat.show_message(str(self.__scorescore))
+                print(self.__scorescore)
+            
+
+    def get_score(self):
+        return self.__score
 
 die()
 
