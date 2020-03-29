@@ -2,7 +2,17 @@
 from sense_hat import SenseHat
 import time
 
-class main:
+class EmojiFace:
+
+    #initialize attributes
+    def __init__(self,sense,emoji):
+        self.sense = sense
+        self.emoji = emoji
+    
+    def displayFace(self):
+        self.sense.set_pixels(self.emoji)
+
+class Run(EmojiFace):
     sense=SenseHat()
 
     w = (255,255,255)
@@ -45,24 +55,12 @@ class main:
         o,o,o,o,o,o,o,o,
         ]
 
-    e1 = EmojiFace(sense,happy)
-    e2 = EmojiFace(sense,meh)
-    e3 = EmojiFace(sense,sad) 
+e1 = EmojiFace(sense,happy)
+e2 = EmojiFace(sense,meh)
+e3 = EmojiFace(sense,sad) 
 
 while True:
     e1.displayFace()
     e2.displayFace()
     e3.displayFace()
-
-
-class EmojiFace:
-
-    #initialize attributes
-    def __init__(self,sense,emoji):
-        self.sense = sense
-        self.emoji = emoji
-    
-    def displayFace(self):
-        self.sense.set_pixels(self.emoji)
-
             
