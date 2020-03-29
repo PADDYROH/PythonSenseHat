@@ -27,8 +27,10 @@ class Game:
 				winner = True
 				winning_player = player
 		if winner:
-			print(str(winning_player.get_name()) + " has won the game !!!")
+			print("Player " + str(winning_player.get_name()) + " has won the game !!!")
 			self.__game_running = False
+
+		return winner
 
 	def play_game(self):	
 
@@ -53,7 +55,8 @@ class Game:
 
 				print("player "+ str(player.get_name()) +" score is now " + str(player.get_score()))
 
-				self.check_for_winner()
+				if self.check_for_winner():
+					break
 
 				time.sleep(2)
 
