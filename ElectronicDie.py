@@ -8,9 +8,10 @@ sense = SenseHat()
 class die:
     def __init__(self):
         self.sense_hat = SenseHat()
+        self.__score = None 
+
         while True:
             self.shake()
-            self.__score = None 
 
 
     
