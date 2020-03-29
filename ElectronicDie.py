@@ -10,10 +10,6 @@ class die:
         self.sense_hat = SenseHat()
         self.__score = None 
 
-        while True:
-            self.shake()
-
-
     
     def accel(self):
         acceleration = self.sense_hat.get_accelerometer_raw()
@@ -34,12 +30,9 @@ class die:
                 num2 = random.uniform(1,3)
                 self.__scorescore = random.randint(int(num2),int(num1))
                 self.sense_hat.show_message(str(self.__scorescore))
-                print(self.__scorescore)
+                print ("dice rolled : " + str(self.__scorescore))
+                return self.__scorescore
             
-
-    def get_score(self):
-        return self.__score
-
 die()
 
 
