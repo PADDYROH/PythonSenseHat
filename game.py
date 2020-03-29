@@ -1,17 +1,22 @@
 from Player import *
 import ElectronicDie
 import time
+import datetime
+import csv
+
 
 class Game:
 
 	NUM_PLAYERS = 2
-	WINING_SCORE = 10
+	WINING_SCORE = 4
 
 
 
 	def __init__(self):
 		self.__game_running = True
 		self.__players = []
+		self.winning_player = None
+
 
 	def __add_players(self):
 		x = 1
@@ -20,21 +25,34 @@ class Game:
 			x += 1	
 
 	def check_for_winner(self):
-		winning_player = None
 		winner = False
 		for player in self.__players:
 			if player.get_score() >= Game.WINING_SCORE:
 				winner = True
-				winning_player = player
+				self.winning_player = player
 		if winner:
-			print("Player " + str(winning_player.get_name()) + " has won the game !!!")
+			print("Player " + str(self.winning_player.get_name()) + " has won the game !!!")
 			self.__game_running = False
 
 		return winner
 
+	def write_to_file(self):
+		csvWinner = open('winner.csv', 'a')
+		with csvWinner:
+		    #write header
+		    #fieldnames = ['player','score','time']
+		    #writeHeader= csv.DictWriter(csvWinner,fieldnames=fieldnames)
+		    #writeHeader.writeheader()
+		    #write winner
+		    writer= csv.writer(csvWinner)
+		    #player, score, time
+		    date = datetime.date.today()
+		    game = [str(self.winning_player.get_name()),str(self.winning_player.get_score()), str(date)]
+		    writer.writerow(game)
+
 	def play_game(self):	
 
-		print(" Welcome to the die game first to 30 wins ")
+		print(" Welcome to the die game first to "+ str(Game.WINING_SCORE) +" wins ")
 
 		time.sleep(2)
 
@@ -43,7 +61,6 @@ class Game:
 		self.__add_players()
 
 		dice_value = None
-
 
 		while self.__game_running:
 			for player in self.__players:
@@ -56,12 +73,16 @@ class Game:
 				print("player "+ str(player.get_name()) +" score is now " + str(player.get_score()))
 
 				if self.check_for_winner():
+					self.write_to_file()
 					break
 
 				time.sleep(2)
 
 				
 				dice_value = None
+
+
+
 
 
 
