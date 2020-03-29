@@ -1,13 +1,13 @@
 from Player import *
 import ElectronicDie
 import time
-import datetime
+from datetime import datetime
 import csv
 
 class Game:
 
     NUM_PLAYERS = 2
-    WINING_SCORE = 10
+    WINING_SCORE = 1
 
 
 
@@ -24,13 +24,15 @@ class Game:
 
     def write_to_file(self,player):
         csvWinner = open('winner.csv', 'r')
-        file_content = file.read()
+        file_content = csvWinner.read()
         csvWinner.close()
         if file_content == "":
+            csvWinner = open('winner.csv', 'a')
             #Writing fileds (player, score, time) to csv file
             fieldnames = ['player','score','time']
             writeHeader= csv.DictWriter(csvWinner,fieldnames=fieldnames)
             writeHeader.writeheader()
+            csvWinner.close()
         
         #Writing new game winner to csv file
         csvWinner = open('winner.csv', 'a')
@@ -40,6 +42,7 @@ class Game:
             date = now.strftime("%m/%d/%y, %H:%M:%S")
             game = [str(self.winning_player.get_name()),str(self.winning_player.get_score()), date]
             writer.writerow(game)
+            csvWinner.close()
             
 
     def check_for_winner(self):
