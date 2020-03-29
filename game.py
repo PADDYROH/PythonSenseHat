@@ -1,4 +1,5 @@
 from Player import *
+import ElectronicDie
 
 class Game:
 
@@ -20,23 +21,32 @@ class Game:
 		for player in self.__players:
 			if player.get_score() >= Game.WINING_SCORE:
 				winner = True
-		return winner
+		if winner:
+			self.__game_running = False:
 
-	def __shake(self,Player):
-		print("not finsihed")
-		# call electronicDie.shake()
-		# add points to player
+	def play_game(self):	
 
+		game_dice = die()
 
-	def play_game(self):
 		self.__add_players()
+
+		dice_value = None
+
 
 		while self.__game_running:
 			for player in self.__players:
-				self.__shake(player)
+				while dice_value is None:
+					dice_value = die().shake()
 
-game = Game()
+				player.add_to_score(dice_value)
 
-game.play_game()
-game.check_for_winner()
+				self.check_for_winner()
+				
+				dice_value = None
+
+
+
+Game().play_game()
+
+
 
