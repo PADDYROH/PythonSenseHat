@@ -87,6 +87,3 @@ class Game:
 
 
 Game().play_game()
-
-
-
