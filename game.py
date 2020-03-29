@@ -23,17 +23,22 @@ class Game:
             x += 1  
 
     def write_to_file(self,player):
+        csvWinner = open('winner.csv', 'r')
+        file_content = file.read()
+        csvWinner.close()
+        if file_content == "":
+            #Writing fileds (player, score, time) to csv file
+            fieldnames = ['player','score','time']
+            writeHeader= csv.DictWriter(csvWinner,fieldnames=fieldnames)
+            writeHeader.writeheader()
+        
+        #Writing new game winner to csv file
         csvWinner = open('winner.csv', 'a')
         with csvWinner:
-            #write header
-            #fieldnames = ['player','score','time']
-            #writeHeader= csv.DictWriter(csvWinner,fieldnames=fieldnames)
-            #writeHeader.writeheader()
-            #write winner
             writer= csv.writer(csvWinner)
-            #player, score, time
-            date = datetime.date.today()
-            game = [str(self.winning_player.get_name()),str(self.winning_player.get_score()), str(date)]
+            now = datetime.now()
+            date = now.strftime("%m/%d/%y, %H:%M:%S")
+            game = [str(self.winning_player.get_name()),str(self.winning_player.get_score()), date]
             writer.writerow(game)
             
 
