@@ -8,7 +8,7 @@ import csv
 class Game:
 
 	NUM_PLAYERS = 2
-	WINING_SCORE = 4
+	WINING_SCORE = 30
 
 
 
