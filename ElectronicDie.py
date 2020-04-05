@@ -26,6 +26,5 @@ class die:
         #once pi reaches an acceleration, it will return die roll value 
         if x >2 or y>2 or z>2:
                 self.__dieRoll = random.randrange(1,6)
-                self.sense_hat.show_message(str(self.__dieRoll))
-                print ("dice rolled : " + str(self.__dieRoll))
+                self.sense_hat.show_message(str(self.__dieRoll), text_colour =(0,255,0))
                 return self.__dieRoll
