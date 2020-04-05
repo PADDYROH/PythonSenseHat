@@ -2,6 +2,8 @@ Assignment 1: Python and Sense Hat Programming
 Patrick Rohan s3720957
 Mateo Diaz s3708081
 
+https://github.com/PADDYROH/PythonSenseHat.git
+
 this project runs on python 3 
 
 Task a
