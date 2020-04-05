@@ -17,7 +17,7 @@ class MonitorAndDisplay:
             self.sense_hat.show_message(str(temp), text_colour = MonitorAndDisplay.blue)
         elif temp in range(self.config_data["comfortable_min"], self.config_data["comfortable_max"]):
             self.sense_hat.show_message(str(temp), text_colour = MonitorAndDisplay.green)
-        else:
+        elif temp > self.config_data["hot_min"]:
             self.sense_hat.show_message(str(temp), text_colour = MonitorAndDisplay.red)
 
     def get_temp(self):
@@ -25,8 +25,9 @@ class MonitorAndDisplay:
         temp_hum = self.sense_hat.get_temperature_from_humidity()
         temp_press = self.sense_hat.get_temperature_from_pressure()
 
+        #get a median temperature 
         temp = (temp_hum + temp_press) / 2
-
+        #remove cpu temp for better room temperature reading
         calibrated_temp = temp - ((cpu_temp - temp) / 1.5)
 
         return int(round(calibrated_temp))
@@ -36,6 +37,7 @@ class MonitorAndDisplay:
         temp = self.get_temp()
 
         while True:
+            #if the current time is greater then the interval to check (10 seconds)
             if time.time() - old_time > interval_to_check:
                 old_time = time.time()
                 temp = self.get_temp()
