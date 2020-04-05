@@ -12,6 +12,7 @@ class Emoji:
     def displayFace(self):
         self.sense.set_pixels(self.emoji)
 
+    #inherit Face methods
 class Face(Emoji):
     #colours
     w = (255,255,255)
@@ -21,7 +22,7 @@ class Face(Emoji):
     b = (0,0,255)
     o = (0,0,0)
 
-    #faces
+#faces
     happy=[
         o,o,o,o,o,o,o,o,
         o,g,w,o,o,g,w,o,
@@ -32,8 +33,7 @@ class Face(Emoji):
         o,o,y,y,y,y,o,o,
         o,o,o,o,o,o,o,o,
         ]
-        
-    
+                
     sad=[
         o,o,o,o,o,o,o,o,
         o,w,b,o,o,w,b,o,
@@ -44,7 +44,7 @@ class Face(Emoji):
         o,y,o,o,o,o,y,o,
         o,o,o,o,o,o,o,o,
         ]
-                
+                   
     neutral=[
         o,o,o,o,o,o,o,o,
         o,w,w,o,o,w,w,o,
@@ -55,13 +55,13 @@ class Face(Emoji):
         o,o,o,o,o,o,o,o,
         o,o,o,o,o,o,o,o,
         ]
-
-    # emojiface objects
+            
+        # emojiface objects
     emoji1 = Emoji(sense,happy)
     emoji2 = Emoji(sense,sad)
     emoji3 = Emoji(sense,neutral) 
 
-    # display objects
+        # display objects
     while True:
         emoji1.displayFace()
         time.sleep(3)
@@ -69,4 +69,5 @@ class Face(Emoji):
         time.sleep(3)
         emoji3.displayFace()
         time.sleep(3)
+        
             
