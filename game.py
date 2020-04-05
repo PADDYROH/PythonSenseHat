@@ -1,7 +1,7 @@
 from Player import *
 import ElectronicDie
 import time
-import datetime
+from datetime import datetime
 import csv
 
 
@@ -37,18 +37,26 @@ class Game:
 		return winner
 
 	def write_to_file(self):
-		csvWinner = open('winner.csv', 'a')
-		with csvWinner:
-		    #write header
-		    #fieldnames = ['player','score','time']
-		    #writeHeader= csv.DictWriter(csvWinner,fieldnames=fieldnames)
-		    #writeHeader.writeheader()
-		    #write winner
-		    writer= csv.writer(csvWinner)
-		    #player, score, time
-		    date = datetime.date.today()
-		    game = [str(self.winning_player.get_name()),str(self.winning_player.get_score()), str(date)]
-		    writer.writerow(game)
+	    csvWinner = open('winner.csv', 'r')
+	    file_content = csvWinner.read()
+	    csvWinner.close()
+	    if file_content == "":
+	        csvWinner = open('winner.csv', 'a')
+	        #Writing fileds (player, score, time) to csv file
+	        fieldnames = ['player','score','time']
+	        writeHeader= csv.DictWriter(csvWinner,fieldnames=fieldnames)
+	        writeHeader.writeheader()
+	        csvWinner.close()
+	    
+	    #Writing new game winner to csv file
+	    csvWinner = open('winner.csv', 'a')
+	    with csvWinner:
+	        writer= csv.writer(csvWinner)
+	        now = datetime.now()
+	        date = now.strftime("%m/%d/%y, %H:%M:%S")
+	        game = [str(self.winning_player.get_name()),str(self.winning_player.get_score()), date]
+	        writer.writerow(game)
+	        csvWinner.close()
 
 	def play_game(self):	
 
