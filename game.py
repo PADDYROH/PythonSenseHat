@@ -9,7 +9,7 @@ from sense_hat import SenseHat
 class Game:
 
     NUM_PLAYERS = 2
-    WINING_SCORE = 1
+    WINING_SCORE = 30
     SCROLL_SPEED = 0.05
 
 
