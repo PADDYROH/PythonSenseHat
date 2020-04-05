@@ -9,7 +9,7 @@ from sense_hat import SenseHat
 class Game:
 
     NUM_PLAYERS = 2
-    WINING_SCORE = 30
+    WINING_SCORE = 1
     SCROLL_SPEED = 0.05
 
 
@@ -43,7 +43,6 @@ class Game:
         try:
             csvWinner = open('winner.csv', 'r')
             file_content = csvWinner.read()
-            csvWinner.close()
         except:
             csvWinner = open('winner.csv', 'w')
             #Writing fields (player, score, time) to csv file
