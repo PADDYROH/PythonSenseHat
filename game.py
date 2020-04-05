@@ -3,12 +3,14 @@ import ElectronicDie
 import time
 from datetime import datetime
 import csv
+from sense_hat import SenseHat
 
 
 class Game:
 
 	NUM_PLAYERS = 2
 	WINING_SCORE = 30
+	SCROLL_SPEED = 0.05
 
 
 
@@ -16,6 +18,7 @@ class Game:
 		self.__game_running = True
 		self.__players = []
 		self.winning_player = None
+		self.sense = SenseHat()
 
 
 	def __add_players(self):
@@ -31,7 +34,7 @@ class Game:
 				winner = True
 				self.winning_player = player
 		if winner:
-			print("Player " + str(self.winning_player.get_name()) + " has won the game !!!")
+			self.sense.show_message("Player " + str(self.winning_player.get_name()) + " has won the game !!!", scroll_speed= Game.SCROLL_SPEED)
 			self.__game_running = False
 
 		return winner
@@ -41,8 +44,8 @@ class Game:
 	    file_content = csvWinner.read()
 	    csvWinner.close()
 	    if file_content == "":
+            #Writing fields (player, score, time) to csv file
 	        csvWinner = open('winner.csv', 'a')
-	        #Writing fileds (player, score, time) to csv file
 	        fieldnames = ['player','score','time']
 	        writeHeader= csv.DictWriter(csvWinner,fieldnames=fieldnames)
 	        writeHeader.writeheader()
@@ -60,7 +63,7 @@ class Game:
 
 	def play_game(self):	
 
-		print(" Welcome to the die game first to "+ str(Game.WINING_SCORE) +" wins ")
+		self.sense.show_message(" Welcome to the die game first to "+ str(Game.WINING_SCORE) +" wins ", scroll_speed= Game.SCROLL_SPEED)
 
 		time.sleep(2)
 
@@ -72,13 +75,15 @@ class Game:
 
 		while self.__game_running:
 			for player in self.__players:
-				print("Player " + str(player.get_name()) + " : " + " it's your turn to shake the die")
+				self.sense.show_message("Player " + str(player.get_name()) + " : " + " shake the die", scroll_speed= Game.SCROLL_SPEED)
+				
+				#Player shakes die
 				while dice_value is None:
 					dice_value = game_dice.shake()
 
 				player.add_to_score(dice_value)
 
-				print("player "+ str(player.get_name()) +" score is now " + str(player.get_score()))
+				self.sense.show_message("player "+ str(player.get_name()) +" score : " + str(player.get_score()), scroll_speed= Game.SCROLL_SPEED)
 
 				if self.check_for_winner():
 					self.write_to_file()
@@ -89,12 +94,4 @@ class Game:
 				
 				dice_value = None
 
-
-
-
-
-
 Game().play_game()
-
-
-
