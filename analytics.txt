@@ -4,6 +4,9 @@ Mateo Diaz s3708081
 
 Task a 
 animatedEmoji.py
+Two classes, the emoji class has an init method and another method to display face.
+The Face class holds constants being the colours used to diplay the faces and the faces themselves.
+These faces are diplayed using the display_emojis method where emjoi objects are created.
 
 Task b
 config.json
@@ -16,16 +19,20 @@ the get_temp() gets the current temp and corrects for the cpu temp as shown in t
 we have set this file up so it is ready to run we declare the MonitorAndDisplay class and call its current temp method 
 
 
-
 Task c
 electronicDie.py
+
+The die class within electronicDie has an accel method which will return the acceleration values from the raspberrypi.
+get_accelerometer_raw() gets the accelerations of the raspberry pi.
+these values are used to check when the die has been shaken by a player.
+Once shaken, a random number will be returned and used within game.py. 
 
 game.py
 
 game.py creates a game class
 constants are the number of players and winning_score 
 functions to note here are check for the winner which goes through the list of players and checks if anyone has one the game.
-and play game. Plat game creates a new dice varibles. and will loop around asking to players to roll the die until someone has one the game. 
+and play game. Play game creates a new dice varibles. and will loop around asking to players to roll the die until someone has one the game. 
 we added sleeps for convinence. 
 
 to play the game just run game.py we have already made a new game. 
