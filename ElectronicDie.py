@@ -1,4 +1,3 @@
-#ElectronicDie
 from sense_hat import SenseHat
 import time
 import random
@@ -19,17 +18,14 @@ class die:
         x = abs(x)
         y = abs(y)
         z = abs(z)
-        
+        #return values of acceleration from raspberry pi
         return x,y,z
     
     def shake(self):
         x,y,z = self.accel()
+        #once pi reaches an acceleration, it will return die roll value 
         if x >2 or y>2 or z>2:
-                self.__scorescore = random.randrange(1,6)
-                self.sense_hat.show_message(str(self.__scorescore))
-                print ("dice rolled : " + str(self.__scorescore))
-                return self.__scorescore
-            
-
-
-
+                self.__dieRoll = random.randrange(1,6)
+                self.sense_hat.show_message(str(self.__dieRoll))
+                print ("dice rolled : " + str(self.__dieRoll))
+                return self.__dieRoll
