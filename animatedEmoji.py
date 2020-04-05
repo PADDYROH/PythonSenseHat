@@ -4,16 +4,16 @@ import time
 
 class Emoji:
     #initialize attributes
-    def __init__(self,sense,emoji):
+    def __init__(self,emoji):
         self.sense = SenseHat()
         self.emoji = emoji
     
     #display on sense hat 
-    def displayFace(self):
+    def set_new_emoji(self):
         self.sense.set_pixels(self.emoji)
 
-    #inherit Face methods
-class Face(Emoji):
+class Face:
+
     #colours
     w = (255,255,255)
     y = (255,255,0)
@@ -55,17 +55,20 @@ class Face(Emoji):
         o,o,o,o,o,o,o,o,
         o,o,o,o,o,o,o,o,
         ]
-            
-        # emojiface objects
-    emoji1 = Emoji(sense,happy)
-    emoji2 = Emoji(sense,sad)
-    emoji3 = Emoji(sense,neutral) 
+          
+    def display_emojis(self):
+    
+        emoji1 = Emoji(self.happy)
+        emoji2 = Emoji(self.sad)
+        emoji3 = Emoji(self.neutral) 
 
-        # display objects
-    while True:
-        emoji1.displayFace()
-        time.sleep(3)
-        emoji2.displayFace()
-        time.sleep(3)
-        emoji3.displayFace()
-        time.sleep(3)
+            # display objects
+        while True:
+            emoji1.set_new_emoji()
+            time.sleep(3)
+            emoji2.set_new_emoji()
+            time.sleep(3)
+            emoji3.set_new_emoji()
+            time.sleep(3)
+
+Face().display_emojis()
