@@ -2,37 +2,22 @@ Assignment 1: Python and Sense Hat Programming
 Patrick Rohan s3720957
 Mateo Diaz s3708081
 
-Task a 
-animatedEmoji.py
+this project runs on python 3 
+
+Task a
+
+to run task a run this command: python ./animatedEmoji.py
+this will run the code 
 
 Task b
-config.json
-monitorAndDisplay.py
 
-our monitor and displays class has an init method that calls methods to check the json file. 
-this checks if our json file is empty or dosent have the correct values. 
-the get_temp() gets the current temp and corrects for the cpu temp as shown in the tutorial. we then display this every constantly while updating the reading every 10 seconds. this can be changed. 
-
-we have set this file up so it is ready to run we declare the MonitorAndDisplay class and call its current temp method 
-
-
+to run task b run this command: python ./monitorAndDisplay.py
+this will run the code to display the temp
 
 Task c
-electronicDie.py
 
-game.py
+we thought it best to demonstrate the electronic die functionality while playing the game.
 
-game.py creates a game class
-constants are the number of players and winning_score 
-functions to note here are check for the winner which goes through the list of players and checks if anyone has one the game.
-and play game. Plat game creates a new dice varibles. and will loop around asking to players to roll the die until someone has one the game. 
-we added sleeps for convinence. 
+run : python ./game.py
 
-to play the game just run game.py we have already made a new game. 
-
-Player.py
-
-this file holds the information for a player class
-it keeps track of the players name and score
-
-winner.csv
+this will play the game and demo the electronic die
