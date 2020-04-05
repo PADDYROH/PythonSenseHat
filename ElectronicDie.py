@@ -24,12 +24,12 @@ class die:
     
     def shake(self):
         x,y,z = self.accel()
-        if x >1 or y>1 or z>1:
+        if x >2 or y>2 or z>2:
                 self.__scorescore = random.randrange(1,6)
                 self.sense_hat.show_message(str(self.__scorescore))
                 print ("dice rolled : " + str(self.__scorescore))
                 return self.__scorescore
             
-die()
+
 
 
